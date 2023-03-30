@@ -10,7 +10,7 @@ class Participant(db.Model):
 
     id = sa.Column(sa.Integer, primary_key=True)
     name = sa.Column(sa.String, unique=True, nullable=False)
-    wish = sa.Column(sa.String, nullable=False)
+    wish = sa.Column(sa.String, nullable=False, default="")
     group_id = sa.Column(sa.ForeignKey("group_table.id"), nullable=True)
     
     recipient_id = sa.Column(sa.ForeignKey("participant_table.id"), nullable=True)
@@ -26,6 +26,6 @@ class Group(db.Model):
 
     id = sa.Column(sa.Integer, primary_key=True)
     name = sa.Column(sa.String, unique=True, nullable=False)
-    description = sa.Column(sa.String, nullable=True)
+    description = sa.Column(sa.String, nullable=False, default="")
     participants = db.relationship(Participant)
 
